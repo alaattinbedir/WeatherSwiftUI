@@ -18,12 +18,12 @@ struct WeatherView: View {
                 .edgesIgnoringSafeArea(.all)
 
             VStack(alignment: .center, spacing: 0) {
-                Text("Barcelona")
+                Text(weatherVM.cityName)
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 26))
 
-                Text(weatherVM.weatherType ?? "Clear!")
+                Text(weatherVM.weatherType ?? "Clear")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 17))
@@ -34,17 +34,16 @@ struct WeatherView: View {
                     .scaledToFit()
                     .frame(width: 100, height: 100, alignment: .center)
 
-                Text("23")
+                Text(weatherVM.currentCityTemp ?? "23")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 65))
 
-                Text("Haz 28, 2022")
+                Text(weatherVM.currentDate ?? "Haz 27, 2022")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 20))
-
-
+                
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             // VSTACK
         }.task {

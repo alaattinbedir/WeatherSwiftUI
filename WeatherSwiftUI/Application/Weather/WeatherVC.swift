@@ -53,21 +53,21 @@ class WeatherVC: BaseVC<WeatherVM> {
     
     @IBOutlet weak var currentCityTempLabel: UILabel! {
         didSet {
-            viewModel.$currentCityTemp
-                .map{ Utilities.sharedInstance.convertFahrenheitToCelsius(fahrenheit:$0 ?? 0.0)}
-                .receive(on: DispatchQueue.main)
-                .assign(to: \.text, on: currentCityTempLabel)
-                .store(in: &subscribers)
+//            viewModel.$currentCityTemp
+//                .map{ Utilities.sharedInstance.convertFahrenheitToCelsius(fahrenheit:$0 ?? 0.0)}
+//                .receive(on: DispatchQueue.main)
+//                .assign(to: \.text, on: currentCityTempLabel)
+//                .store(in: &subscribers)
         }
     }
     
     @IBOutlet weak var currentDateLabel: UILabel! {
         didSet {
-            viewModel.$currentDate
-                .map{ Utilities.sharedInstance.getFormatedDate(date: Double(($0 ?? 0))) }
-                .receive(on: DispatchQueue.main)
-                .assign(to: \.text, on: currentDateLabel)
-                .store(in: &subscribers)
+//            viewModel.$currentDate
+//                .map{ Utilities.sharedInstance.getFormatedDate(date: Double(($0 ?? 0))) }
+//                .receive(on: DispatchQueue.main)
+//                .assign(to: \.text, on: currentDateLabel)
+//                .store(in: &subscribers)
         }
     }
     
