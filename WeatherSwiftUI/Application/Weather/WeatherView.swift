@@ -83,7 +83,7 @@ struct WeatherDailyCell: View {
     
     var body: some View {
         HStack {
-            Text(Utilities.sharedInstance.getDayFromDate(date: Double(daily.time ?? 0)))
+            Text(Helper.sharedInstance.getDayFromDate(date: Double(daily.time ?? 0)))
                 .foregroundColor(.white)
                 .frame(width: 80, height: 25, alignment: .leading)
             Spacer()
@@ -92,10 +92,10 @@ struct WeatherDailyCell: View {
                 .scaledToFit()
                 .frame(width: 40, height: 25, alignment: .center)
             Spacer()
-            Text(Utilities.sharedInstance.convertFahrenheitToCelsius(fahrenheit:daily.apparentTemperatureHigh ?? 32))
+            Text(Helper.sharedInstance.convertFahrenheitToCelsius(fahrenheit:daily.apparentTemperatureHigh ?? 32))
                 .foregroundColor(.white)
                 .padding(7)
-            Text(Utilities.sharedInstance.convertFahrenheitToCelsius(fahrenheit:daily.temperatureHigh ?? 32))
+            Text(Helper.sharedInstance.convertFahrenheitToCelsius(fahrenheit:daily.temperatureHigh ?? 32))
                 .foregroundColor(.gray)
                 .padding(7)
 
@@ -108,13 +108,13 @@ struct WeatherHourlyCell: View {
 
     var body: some View {
         VStack {
-            Text(Utilities.sharedInstance.getHourFromDate(date: Double(hourly.time ?? 0)))
+            Text(Helper.sharedInstance.getHourFromDate(date: Double(hourly.time ?? 0)))
                 .foregroundColor(.white)
             Image("partlysunny")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 30, alignment: .center)
-            Text(Utilities.sharedInstance.convertFahrenheitToCelsius(fahrenheit: hourly.temperature ?? 0))
+            Text(Helper.sharedInstance.convertFahrenheitToCelsius(fahrenheit: hourly.temperature ?? 0))
                 .foregroundColor(.white)
         }
     }

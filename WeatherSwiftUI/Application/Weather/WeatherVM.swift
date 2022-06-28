@@ -30,9 +30,9 @@ extension WeatherVM {
                                    succeed: { [weak self] (weather) in
             guard let self = self else { return }
 
-            self.currentDate = weather.currently?.time.map{ Utilities.sharedInstance.getFormatedDate(date: Double(($0))) }
+            self.currentDate = weather.currently?.time.map{ Helper.sharedInstance.getFormatedDate(date: Double(($0))) }
             self.weatherType = weather.currently?.summary
-            self.currentCityTemp = weather.currently?.temperature.map { Utilities.sharedInstance.convertFahrenheitToCelsius(fahrenheit:$0) }
+            self.currentCityTemp = weather.currently?.temperature.map { Helper.sharedInstance.convertFahrenheitToCelsius(fahrenheit:$0) }
             self.responseDailyList = weather.daily?.data
             self.responseHourlyList = weather.hourly?.data
 

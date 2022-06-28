@@ -9,11 +9,11 @@
 import Foundation
 import SystemConfiguration
 
-public final class Utilities {
+public final class Helper {
     
-    public class var sharedInstance: Utilities {
+    public class var sharedInstance: Helper {
         struct Singleton {
-            static let instance: Utilities = Utilities()
+            static let instance: Helper = Helper()
         }
         return Singleton.instance
     }

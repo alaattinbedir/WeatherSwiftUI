@@ -22,7 +22,7 @@
 		8417D92F286ADD6300878083 /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417D92E286ADD5B00878083 /* WeatherApi.swift */; };
 		8417D946286ADE5700878083 /* MLBasicKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8417D945286ADE5700878083 /* MLBasicKit */; };
 		8417D948286ADE5C00878083 /* MLNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 8417D947286ADE5C00878083 /* MLNetworking */; };
-		8417D949286ADEB200878083 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417D937286ADD7900878083 /* Utilities.swift */; };
+		8417D949286ADEB200878083 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417D937286ADD7900878083 /* Helper.swift */; };
 		8417D94A286ADEB700878083 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417D939286ADD7900878083 /* Endpoints.swift */; };
 		8417D94B286ADEBA00878083 /* AppDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417D93A286ADD7900878083 /* AppDomain.swift */; };
 		8417D94C286ADEBE00878083 /* SessionKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8417D93C286ADD7900878083 /* SessionKeeper.swift */; };
@@ -66,7 +66,7 @@
 		8417D924286ADD2400878083 /* Hourly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hourly.swift; sourceTree = "<group>"; };
 		8417D925286ADD2400878083 /* ResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseData.swift; sourceTree = "<group>"; };
 		8417D92E286ADD5B00878083 /* WeatherApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApi.swift; sourceTree = "<group>"; };
-		8417D937286ADD7900878083 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		8417D937286ADD7900878083 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		8417D939286ADD7900878083 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		8417D93A286ADD7900878083 /* AppDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDomain.swift; sourceTree = "<group>"; };
 		8417D93C286ADD7900878083 /* SessionKeeper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionKeeper.swift; sourceTree = "<group>"; };
@@ -235,19 +235,19 @@
 		8417D930286ADD7900878083 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				8417D936286ADD7900878083 /* Utilities */,
+				8417D936286ADD7900878083 /* Helper */,
 				8417D938286ADD7900878083 /* ServiceConstants */,
 				8417D93B286ADD7900878083 /* Session */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		8417D936286ADD7900878083 /* Utilities */ = {
+		8417D936286ADD7900878083 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				8417D937286ADD7900878083 /* Utilities.swift */,
+				8417D937286ADD7900878083 /* Helper.swift */,
 			);
-			path = Utilities;
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		8417D938286ADD7900878083 /* ServiceConstants */ = {
@@ -416,7 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8417D929286ADD3C00878083 /* Hourly.swift in Sources */,
-				8417D949286ADEB200878083 /* Utilities.swift in Sources */,
+				8417D949286ADEB200878083 /* Helper.swift in Sources */,
 				8417D94B286ADEBA00878083 /* AppDomain.swift in Sources */,
 				8417D92F286ADD6300878083 /* WeatherApi.swift in Sources */,
 				8417D94A286ADEB700878083 /* Endpoints.swift in Sources */,
