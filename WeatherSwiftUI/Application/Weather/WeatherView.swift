@@ -51,7 +51,7 @@ struct WeatherView: View {
                             WeatherHourlyCell()
                         }
                     }
-                }.padding(.leading, 30).padding(.trailing, 30)
+                }.padding(.leading, 30).padding(.trailing, 30).padding(.top, 30)
 
                 List {
                     ForEach (1..<30) { index in
