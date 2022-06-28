@@ -8,5 +8,5 @@
 import Foundation
 
 struct Endpoints {
-    static let weather = "/{0},{1}}"    
+    static let weather = "{0},{1}"    
 }

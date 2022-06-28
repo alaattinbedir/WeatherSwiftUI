@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WeatherView: View {
+    @StateObject private var weatherVM = WeatherVM()
 
     var body: some View {
         ZStack {
@@ -22,7 +23,7 @@ struct WeatherView: View {
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 26))
 
-                Text("Clear")
+                Text(weatherVM.weatherType ?? "Clear!")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 17))
@@ -38,7 +39,6 @@ struct WeatherView: View {
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 65))
 
-
                 Text("Haz 28, 2022")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
@@ -47,6 +47,8 @@ struct WeatherView: View {
 
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             // VSTACK
+        }.task {
+            weatherVM.fetchCurrentWeather()
         }
         // ZStack
     }
