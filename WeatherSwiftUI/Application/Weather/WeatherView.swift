@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WeatherView: View {
     @StateObject private var weatherVM = WeatherVM()
+    private var gridItemLayout = [GridItem(.flexible())]
 
     var body: some View {
         ZStack {
@@ -43,7 +44,24 @@ struct WeatherView: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 20))
-                
+
+                ScrollView(.horizontal) {
+                    LazyHGrid(rows: gridItemLayout, spacing: 20) {
+                        ForEach (1..<24) { index in
+                            WeatherHourlyCell()
+                        }
+                    }
+                }.padding(.leading, 30).padding(.trailing, 30)
+
+                List {
+                    ForEach (1..<30) { index in
+                        WeatherDailyCell().listRowSeparator(.hidden)
+                    }
+                }.background(Color.clear.ignoresSafeArea())
+                    .onAppear {
+                        // Set the default to clear
+                        UITableView.appearance().backgroundColor = .clear
+                    }
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             // VSTACK
         }.task {
@@ -56,5 +74,41 @@ struct WeatherView: View {
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherView()
+    }
+}
+
+struct WeatherDailyCell: View {
+
+    var body: some View {
+        HStack {
+            Text("Pazartesi")
+                .foregroundColor(.white)
+            Spacer()
+            Image("partlysunny")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 40, height: 25, alignment: .center)
+            Spacer()
+            Text("28")
+                .foregroundColor(.white)
+            Text("28")
+                .foregroundColor(.gray)
+        }.listRowBackground(Color.clear)
+    }
+}
+
+struct WeatherHourlyCell: View {
+
+    var body: some View {
+        VStack {
+            Text("10")
+                .foregroundColor(.white)
+            Image("partlysunny")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 40, height: 30, alignment: .center)
+            Text("28")
+                .foregroundColor(.white)
+        }
     }
 }

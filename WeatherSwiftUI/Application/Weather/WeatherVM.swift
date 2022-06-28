@@ -8,6 +8,7 @@
 import Foundation
 import MLBasicKit
 import Combine
+import UIKit
 
 class WeatherVM: BaseVM {
     @Published var cityName: String = "Barcelona"
@@ -20,6 +21,7 @@ class WeatherVM: BaseVM {
 
 extension WeatherVM {
     func fetchCurrentWeather() {
+
         // Get current weather
         WeatherApi().fetchWeather(latitude: currentLocation.latitude,
                                   longitude: currentLocation.longitude,
