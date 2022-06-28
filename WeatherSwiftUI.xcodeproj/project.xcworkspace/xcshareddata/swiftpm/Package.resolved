@@ -10,12 +10,30 @@
       }
     },
     {
+      "identity" : "mlbasickit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alaattinbedir/MLBasicKit.git",
+      "state" : {
+        "revision" : "f0643ab891b841e9c34f69cb183a2807adda96c1",
+        "version" : "1.0.2"
+      }
+    },
+    {
       "identity" : "mlextensions",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/alaattinbedir/MLExtensions",
       "state" : {
         "revision" : "e27efe3bf11e6d7098d0b157ba1cac5183a8c1a4",
         "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "mlnetworking",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/alaattinbedir/MLNetworking.git",
+      "state" : {
+        "revision" : "f53f852697d5bd2d2cec2169fc9cf44c2e3f3b4e",
+        "version" : "1.1.0"
       }
     }
   ],
