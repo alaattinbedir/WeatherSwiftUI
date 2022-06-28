@@ -47,15 +47,15 @@ struct WeatherView: View {
 
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: gridItemLayout, spacing: 20) {
-                        ForEach (1..<24) { index in
-                            WeatherHourlyCell()
+                        ForEach (weatherVM.responseHourlyList!, id: \.time ) { hourly in
+                            WeatherHourlyCell(hourly: hourly)
                         }
                     }
                 }.padding(.leading, 30).padding(.trailing, 30).padding(.top, 30)
 
                 List {
-                    ForEach (1..<30) { index in
-                        WeatherDailyCell().listRowSeparator(.hidden)
+                    ForEach (weatherVM.responseDailyList!, id: \.time ) { daily in
+                        WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
                     }
                 }.background(Color.clear.ignoresSafeArea())
                     .onAppear {
@@ -79,35 +79,42 @@ struct WeatherView_Previews: PreviewProvider {
 
 struct WeatherDailyCell: View {
 
+    let daily: ResponseData
+    
     var body: some View {
         HStack {
-            Text("Pazartesi")
+            Text(Utilities.sharedInstance.getDayFromDate(date: Double(daily.time ?? 0)))
                 .foregroundColor(.white)
+                .frame(width: 80, height: 25, alignment: .leading)
             Spacer()
             Image("partlysunny")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 25, alignment: .center)
             Spacer()
-            Text("28")
+            Text(Utilities.sharedInstance.convertFahrenheitToCelsius(fahrenheit:daily.apparentTemperatureHigh ?? 32))
                 .foregroundColor(.white)
-            Text("28")
+                .padding(7)
+            Text(Utilities.sharedInstance.convertFahrenheitToCelsius(fahrenheit:daily.temperatureHigh ?? 32))
                 .foregroundColor(.gray)
+                .padding(7)
+
         }.listRowBackground(Color.clear)
     }
 }
 
 struct WeatherHourlyCell: View {
+    let hourly: ResponseData
 
     var body: some View {
         VStack {
-            Text("10")
+            Text(Utilities.sharedInstance.getHourFromDate(date: Double(hourly.time ?? 0)))
                 .foregroundColor(.white)
             Image("partlysunny")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 30, alignment: .center)
-            Text("28")
+            Text(Utilities.sharedInstance.convertFahrenheitToCelsius(fahrenheit: hourly.temperature ?? 0))
                 .foregroundColor(.white)
         }
     }

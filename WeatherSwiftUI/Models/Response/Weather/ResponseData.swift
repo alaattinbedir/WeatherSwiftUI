@@ -14,6 +14,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 import Foundation
 struct ResponseData : Codable {
     let temperature : Double?
+    let temperatureHigh : Double?
     let windSpeed : Double?
     let humidity : Double?
     let windBearing : Int?
@@ -27,6 +28,7 @@ struct ResponseData : Codable {
     let windGust : Double?
     let visibility : Double?
     let apparentTemperature : Double?
+    let apparentTemperatureHigh : Double?
     let pressure : Double?
     let precipProbability : Double?
     let ozone : Double?
@@ -34,6 +36,7 @@ struct ResponseData : Codable {
     enum CodingKeys: String, CodingKey {
 
         case temperature = "temperature"
+        case temperatureHigh = "temperatureHigh"
         case windSpeed = "windSpeed"
         case humidity = "humidity"
         case windBearing = "windBearing"
@@ -47,6 +50,7 @@ struct ResponseData : Codable {
         case windGust = "windGust"
         case visibility = "visibility"
         case apparentTemperature = "apparentTemperature"
+        case apparentTemperatureHigh = "apparentTemperatureHigh"
         case pressure = "pressure"
         case precipProbability = "precipProbability"
         case ozone = "ozone"
@@ -55,6 +59,7 @@ struct ResponseData : Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         temperature = try values.decodeIfPresent(Double.self, forKey: .temperature)
+        temperatureHigh = try values.decodeIfPresent(Double.self, forKey: .temperatureHigh)
         windSpeed = try values.decodeIfPresent(Double.self, forKey: .windSpeed)
         humidity = try values.decodeIfPresent(Double.self, forKey: .humidity)
         windBearing = try values.decodeIfPresent(Int.self, forKey: .windBearing)
@@ -68,6 +73,7 @@ struct ResponseData : Codable {
         windGust = try values.decodeIfPresent(Double.self, forKey: .windGust)
         visibility = try values.decodeIfPresent(Double.self, forKey: .visibility)
         apparentTemperature = try values.decodeIfPresent(Double.self, forKey: .apparentTemperature)
+        apparentTemperatureHigh = try values.decodeIfPresent(Double.self, forKey: .apparentTemperatureHigh)
         pressure = try values.decodeIfPresent(Double.self, forKey: .pressure)
         precipProbability = try values.decodeIfPresent(Double.self, forKey: .precipProbability)
         ozone = try values.decodeIfPresent(Double.self, forKey: .ozone)
