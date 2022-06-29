@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WeatherView: View {
-    @StateObject private var weatherVM = WeatherVM()
+    @StateObject private var vm = WeatherVM()
     private var gridItemLayout = [GridItem(.flexible())]
 
     var body: some View {
@@ -19,12 +19,12 @@ struct WeatherView: View {
                 .edgesIgnoringSafeArea(.all)
 
             VStack(alignment: .center, spacing: 0) {
-                Text(weatherVM.cityName)
+                Text(vm.cityName)
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 26))
 
-                Text(weatherVM.weatherType ?? "Clear")
+                Text(vm.weatherType ?? "Clear")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 17))
@@ -35,36 +35,36 @@ struct WeatherView: View {
                     .scaledToFit()
                     .frame(width: 100, height: 100, alignment: .center)
 
-                Text(weatherVM.currentCityTemp ?? "23")
+                Text(vm.currentCityTemp ?? "23")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 65))
 
-                Text(weatherVM.currentDate ?? "Haz 27, 2022")
+                Text(vm.currentDate ?? "Haz 27, 2022")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 20))
 
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: gridItemLayout, spacing: 20) {
-                        ForEach (weatherVM.responseHourlyList!, id: \.time ) { hourly in
+                        ForEach (vm.responseHourlyList!, id: \.time ) { hourly in
                             WeatherHourlyCell(hourly: hourly)
                         }
                     }
                 }.padding(.leading, 30).padding(.trailing, 30).padding(.top, 30)
 
                 List {
-                    ForEach (weatherVM.responseDailyList!, id: \.time ) { daily in
+                    ForEach (vm.responseDailyList!, id: \.time ) { daily in
                         WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
                     }
                 }.background(Color.clear.ignoresSafeArea())
                     .onAppear {                        
-                        weatherVM.onAppear()                        
+                        vm.onAppear()
                     }
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             // VSTACK
         }.task {
-            weatherVM.fetchCurrentWeather()
+            vm.fetchCurrentWeather()
         }
         // ZStack
     }

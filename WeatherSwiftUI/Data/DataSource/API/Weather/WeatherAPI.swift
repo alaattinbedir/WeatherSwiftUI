@@ -8,16 +8,9 @@
 import Foundation
 import MLNetworking
 
-protocol WeatherApiProtocol {
-    func fetchWeather(latitude: Double,
-                      longitude: Double,
-                      succeed: @escaping (WeatherResponse) -> Void,
-                      failed: @escaping (ErrorMessage) -> Void)
-}
-
 // MARK: - Weather model extension
 
-class WeatherApi: WeatherApiProtocol {
+class WeatherAPI: WeatherDataSource {
 
     // Get weather data from service
     func fetchWeather(latitude: Double,

@@ -21,13 +21,13 @@ class WeatherVM: BaseVM {
 
     var currentLocation: (latitude:Double, longitude:Double) = (41.3874, 2.1686)
 
-    private let weatherApi: WeatherApiProtocol
+    private let weatherApi: WeatherDataSource
 
     required convenience init() {
-        self.init(weatherApi: WeatherApi())
+        self.init(weatherApi: WeatherAPI())
     }
 
-    nonisolated init (weatherApi: WeatherApiProtocol = WeatherApi()) {
+    nonisolated init (weatherApi: WeatherDataSource = WeatherAPI()) {
         self.weatherApi = weatherApi
         super.init()
     }
