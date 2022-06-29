@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Endpoints {
+enum Endpoints {
     static let weather = "{0},{1}"    
 }
