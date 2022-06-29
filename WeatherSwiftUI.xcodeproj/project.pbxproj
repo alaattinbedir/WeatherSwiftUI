@@ -135,7 +135,6 @@
 			children = (
 				84AC164B286CCC1E00F88023 /* Core */,
 				84AC1647286CCB7300F88023 /* Data */,
-				84AC1643286CCA4800F88023 /* Domain */,
 				84AC1646286CCB2300F88023 /* Presentation */,
 				8417D8DF286ADB7E00878083 /* WeatherSwiftUIApp.swift */,
 				8417D8E3286ADB7F00878083 /* Assets.xcassets */,
@@ -178,13 +177,6 @@
 				8417D94E286AE3FF00878083 /* WeatherView.swift */,
 			);
 			path = Weather;
-			sourceTree = "<group>";
-		};
-		8417D91E286ADD1800878083 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		8417D920286ADD2400878083 /* Weather */ = {
@@ -248,30 +240,6 @@
 			path = HourlyCell;
 			sourceTree = "<group>";
 		};
-		84AC1643286CCA4800F88023 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				8417D91E286ADD1800878083 /* Model */,
-				84AC1644286CCAA900F88023 /* Repository */,
-				84AC1645286CCAE400F88023 /* UseCases */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		84AC1644286CCAA900F88023 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
-		84AC1645286CCAE400F88023 /* UseCases */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UseCases;
-			sourceTree = "<group>";
-		};
 		84AC1646286CCB2300F88023 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,16 +252,8 @@
 			isa = PBXGroup;
 			children = (
 				84AC1649286CCBF500F88023 /* DataSource */,
-				84AC1648286CCBE200F88023 /* Repository */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		84AC1648286CCBE200F88023 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Repository;
 			sourceTree = "<group>";
 		};
 		84AC1649286CCBF500F88023 /* DataSource */ = {
