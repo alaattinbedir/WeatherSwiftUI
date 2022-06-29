@@ -58,9 +58,8 @@ struct WeatherView: View {
                         WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
                     }
                 }.background(Color.clear.ignoresSafeArea())
-                    .onAppear {
-                        // Set the default to clear
-                        UITableView.appearance().backgroundColor = .clear
+                    .onAppear {                        
+                        weatherVM.onAppear()                        
                     }
             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             // VSTACK

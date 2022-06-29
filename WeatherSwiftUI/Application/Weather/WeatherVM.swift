@@ -10,7 +10,8 @@ import MLBasicKit
 import Combine
 import UIKit
 
-class WeatherVM: BaseVM {
+
+final class WeatherVM: BaseVM {
     @Published var cityName: String = "Barcelona"
     @Published var weatherType: String? = nil
     @Published var currentCityTemp: String? = nil
@@ -19,13 +20,29 @@ class WeatherVM: BaseVM {
     @Published var responseHourlyList: [ResponseData]? = [ResponseData]()
 
     var currentLocation: (latitude:Double, longitude:Double) = (41.3874, 2.1686)
+
+    private let weatherApi: WeatherApiProtocol
+
+    required convenience init() {
+        self.init(weatherApi: WeatherApi())
+    }
+
+    init (weatherApi: WeatherApiProtocol = WeatherApi()) {
+        self.weatherApi = weatherApi
+        super.init()
+    }
+
+    func onAppear() {
+        // Set the default to clear
+        UITableView.appearance().backgroundColor = .clear
+    }
 }
 
 extension WeatherVM {
     func fetchCurrentWeather() {
 
         // Get current weather
-        WeatherApi().fetchWeather(latitude: currentLocation.latitude,
+        weatherApi.fetchWeather(latitude: currentLocation.latitude,
                                   longitude: currentLocation.longitude,
                                    succeed: { [weak self] (weather) in
             guard let self = self else { return }
