@@ -17,7 +17,7 @@ protocol WeatherApiProtocol {
 
 // MARK: - Weather model extension
 
-final class WeatherApi: WeatherApiProtocol {
+class WeatherApi: WeatherApiProtocol {
 
     // Get weather data from service
     func fetchWeather(latitude: Double,

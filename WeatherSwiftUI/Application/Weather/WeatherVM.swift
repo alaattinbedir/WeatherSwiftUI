@@ -11,7 +11,7 @@ import Combine
 import UIKit
 
 
-final class WeatherVM: BaseVM {
+class WeatherVM: BaseVM {
     @Published var cityName: String = "Barcelona"
     @Published var weatherType: String? = nil
     @Published var currentCityTemp: String? = nil
