@@ -10,7 +10,7 @@ import MLBasicKit
 import Combine
 import UIKit
 
-
+@MainActor
 class WeatherVM: BaseVM {
     @Published var cityName: String = "Barcelona"
     @Published var weatherType: String? = nil
@@ -27,7 +27,7 @@ class WeatherVM: BaseVM {
         self.init(weatherApi: WeatherApi())
     }
 
-    init (weatherApi: WeatherApiProtocol = WeatherApi()) {
+    nonisolated init (weatherApi: WeatherApiProtocol = WeatherApi()) {
         self.weatherApi = weatherApi
         super.init()
     }
