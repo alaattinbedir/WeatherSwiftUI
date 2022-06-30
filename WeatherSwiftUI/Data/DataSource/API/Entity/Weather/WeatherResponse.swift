@@ -12,35 +12,126 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
+
+
 struct WeatherResponse : Codable {
-    let latitude : Double?
     let daily : Daily?
     let currently : Currently?
-    let timezone : String?
     let hourly : Hourly?
-    let longitude : Double?
-    let offset : Int?
+    let weather : WeatherAPIEntity
 
     enum CodingKeys: String, CodingKey {
-
-        case latitude = "latitude"
         case daily = "daily"
         case currently = "currently"
-        case timezone = "timezone"
         case hourly = "hourly"
-        case longitude = "longitude"
-        case offset = "offset"
+    }
+
+    enum CurrentlyKeys: String, CodingKey {
+        case summary = "summary"
+        case temperature = "temperature"
+        case time = "time"
+    }
+
+    enum DailyKeys: String, CodingKey {
+        case data = "data"
+    }
+
+    enum HourlyKeys: String, CodingKey {
+        case data = "data"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        latitude = try values.decodeIfPresent(Double.self, forKey: .latitude)
         daily = try values.decodeIfPresent(Daily.self, forKey: .daily)
         currently = try values.decodeIfPresent(Currently.self, forKey: .currently)
-        timezone = try values.decodeIfPresent(String.self, forKey: .timezone)
         hourly = try values.decodeIfPresent(Hourly.self, forKey: .hourly)
-        longitude = try values.decodeIfPresent(Double.self, forKey: .longitude)
-        offset = try values.decodeIfPresent(Int.self, forKey: .offset)
+
+        let currentlyContainer = try values.nestedContainer(keyedBy: CurrentlyKeys.self, forKey: .currently)
+        let temperature = try currentlyContainer.decode(Double.self, forKey: .temperature)
+        let weatherType = try currentlyContainer.decode(String.self, forKey: .summary)
+        let currentDate = try currentlyContainer.decode(Int.self, forKey: .time)
+
+        let dailyContainer = try values.nestedContainer(keyedBy: DailyKeys.self, forKey: .daily)
+        let responseDailyList = try dailyContainer.decode([ResponseData].self, forKey: .data)
+
+        let hourlyContainer = try values.nestedContainer(keyedBy: HourlyKeys.self, forKey: .hourly)
+        let responseHourlyList = try hourlyContainer.decode([ResponseData].self, forKey: .data)
+
+        weather = WeatherAPIEntity (weatherType: weatherType,
+                                    currentCityTemp: temperature,
+                                    currentDate: currentDate,
+                                    responseDailyList: responseDailyList,
+                                    responseHourlyList: responseHourlyList)
+    }
+}
+
+struct Currently : Codable {
+    let temperature : Double?
+    let time : Int?
+    let summary : String?
+
+    enum CodingKeys: String, CodingKey {
+        case temperature = "temperature"
+        case time = "time"
+        case summary = "summary"
     }
 
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        temperature = try values.decodeIfPresent(Double.self, forKey: .temperature)
+        time = try values.decodeIfPresent(Int.self, forKey: .time)
+        summary = try values.decodeIfPresent(String.self, forKey: .summary)
+    }
 }
+
+struct Daily : Codable {
+    let data : [ResponseData]?
+
+    enum CodingKeys: String, CodingKey {
+        case data = "data"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        data = try values.decodeIfPresent([ResponseData].self, forKey: .data)
+    }
+}
+
+struct Hourly : Codable {
+    let data : [ResponseData]?
+
+    enum CodingKeys: String, CodingKey {
+        case data = "data"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        data = try values.decodeIfPresent([ResponseData].self, forKey: .data)
+    }
+}
+
+struct ResponseData : Codable {
+    let temperature : Double?
+    let temperatureHigh : Double?
+    let time : Int?
+    let apparentTemperature : Double?
+    let apparentTemperatureHigh : Double?
+
+    enum CodingKeys: String, CodingKey {
+        case temperature = "temperature"
+        case temperatureHigh = "temperatureHigh"
+        case time = "time"
+        case apparentTemperature = "apparentTemperature"
+        case apparentTemperatureHigh = "apparentTemperatureHigh"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        temperature = try values.decodeIfPresent(Double.self, forKey: .temperature)
+        temperatureHigh = try values.decodeIfPresent(Double.self, forKey: .temperatureHigh)
+        time = try values.decodeIfPresent(Int.self, forKey: .time)
+        apparentTemperature = try values.decodeIfPresent(Double.self, forKey: .apparentTemperature)
+        apparentTemperatureHigh = try values.decodeIfPresent(Double.self, forKey: .apparentTemperatureHigh)
+    }
+}
+

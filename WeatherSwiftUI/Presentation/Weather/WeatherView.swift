@@ -24,7 +24,7 @@ struct WeatherView: View {
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 26))
 
-                Text(vm.weatherType ?? "Clear")
+                Text(vm.weatherType)
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 17))
@@ -35,26 +35,26 @@ struct WeatherView: View {
                     .scaledToFit()
                     .frame(width: 100, height: 100, alignment: .center)
 
-                Text(vm.currentCityTemp ?? "23")
+                Text(vm.currentCityTemp)
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 65))
 
-                Text(vm.currentDate ?? "Haz 27, 2022")
+                Text(vm.currentDate)
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(Font.custom("Arial Rounded MT Bold", size: 20))
 
                 ScrollView(.horizontal) {
                     LazyHGrid(rows: gridItemLayout, spacing: 20) {
-                        ForEach (vm.responseHourlyList!, id: \.time ) { hourly in
+                        ForEach (vm.responseHourlyList, id: \.time ) { hourly in
                             WeatherHourlyCell(hourly: hourly)
                         }
                     }
                 }.padding(.leading, 30).padding(.trailing, 30).padding(.top, 30)
 
                 List {
-                    ForEach (vm.responseDailyList!, id: \.time ) { daily in
+                    ForEach (vm.responseDailyList, id: \.time ) { daily in
                         WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
                     }
                 }.background(Color.clear.ignoresSafeArea())

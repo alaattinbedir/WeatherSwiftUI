@@ -11,6 +11,6 @@ import MLNetworking
 protocol WeatherDataSource {
     func fetchWeather(latitude: Double,
                       longitude: Double,
-                      succeed: @escaping (WeatherResponse) -> Void,
+                      succeed: @escaping (WeatherAPIEntity) -> Void,
                       failed: @escaping (ErrorMessage) -> Void)
 }

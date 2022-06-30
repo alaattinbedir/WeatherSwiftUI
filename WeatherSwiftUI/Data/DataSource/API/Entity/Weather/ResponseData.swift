@@ -15,68 +15,25 @@ import Foundation
 struct ResponseData : Codable {
     let temperature : Double?
     let temperatureHigh : Double?
-    let windSpeed : Double?
-    let humidity : Double?
-    let windBearing : Int?
-    let cloudCover : Double?
     let time : Int?
-    let dewPoint : Double?
-    let uvIndex : Int?
-    let summary : String?
-    let icon : String?
-    let precipIntensity : Double?
-    let windGust : Double?
-    let visibility : Double?
     let apparentTemperature : Double?
     let apparentTemperatureHigh : Double?
-    let pressure : Double?
-    let precipProbability : Double?
-    let ozone : Double?
 
     enum CodingKeys: String, CodingKey {
-
         case temperature = "temperature"
         case temperatureHigh = "temperatureHigh"
-        case windSpeed = "windSpeed"
-        case humidity = "humidity"
-        case windBearing = "windBearing"
-        case cloudCover = "cloudCover"
         case time = "time"
-        case dewPoint = "dewPoint"
-        case uvIndex = "uvIndex"
-        case summary = "summary"
-        case icon = "icon"
-        case precipIntensity = "precipIntensity"
-        case windGust = "windGust"
-        case visibility = "visibility"
         case apparentTemperature = "apparentTemperature"
         case apparentTemperatureHigh = "apparentTemperatureHigh"
-        case pressure = "pressure"
-        case precipProbability = "precipProbability"
-        case ozone = "ozone"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         temperature = try values.decodeIfPresent(Double.self, forKey: .temperature)
         temperatureHigh = try values.decodeIfPresent(Double.self, forKey: .temperatureHigh)
-        windSpeed = try values.decodeIfPresent(Double.self, forKey: .windSpeed)
-        humidity = try values.decodeIfPresent(Double.self, forKey: .humidity)
-        windBearing = try values.decodeIfPresent(Int.self, forKey: .windBearing)
-        cloudCover = try values.decodeIfPresent(Double.self, forKey: .cloudCover)
-        time = try values.decodeIfPresent(Int.self, forKey: .time)
-        dewPoint = try values.decodeIfPresent(Double.self, forKey: .dewPoint)
-        uvIndex = try values.decodeIfPresent(Int.self, forKey: .uvIndex)
-        summary = try values.decodeIfPresent(String.self, forKey: .summary)
-        icon = try values.decodeIfPresent(String.self, forKey: .icon)
-        precipIntensity = try values.decodeIfPresent(Double.self, forKey: .precipIntensity)
-        windGust = try values.decodeIfPresent(Double.self, forKey: .windGust)
-        visibility = try values.decodeIfPresent(Double.self, forKey: .visibility)
+        time = try values.decodeIfPresent(Int.self, forKey: .time)        
         apparentTemperature = try values.decodeIfPresent(Double.self, forKey: .apparentTemperature)
         apparentTemperatureHigh = try values.decodeIfPresent(Double.self, forKey: .apparentTemperatureHigh)
-        pressure = try values.decodeIfPresent(Double.self, forKey: .pressure)
-        precipProbability = try values.decodeIfPresent(Double.self, forKey: .precipProbability)
-        ozone = try values.decodeIfPresent(Double.self, forKey: .ozone)
     }
 
 }
