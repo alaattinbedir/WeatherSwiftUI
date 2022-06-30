@@ -6,18 +6,18 @@
 //
 
 import Foundation
-import MLBasicKit
 import Combine
 import UIKit
+import MLBaseSwiftUI
 
 @MainActor
-class WeatherVM: BaseVM {
+class WeatherViewModel: BaseViewModel {
     @Published var cityName: String = "Barcelona"
     @Published var weatherType: String = ""
     @Published var currentCityTemp: String = ""
     @Published var currentDate: String = ""
-    @Published var responseDailyList: [ResponseData] = [ResponseData]()
-    @Published var responseHourlyList: [ResponseData] = [ResponseData]()
+    @Published var responseDailyList: [ResponseData] = []
+    @Published var responseHourlyList: [ResponseData] = []
 
     var currentLocation: (latitude:Double, longitude:Double) = (41.3874, 2.1686)
 
@@ -38,7 +38,7 @@ class WeatherVM: BaseVM {
     }
 }
 
-extension WeatherVM {
+extension WeatherViewModel {
     func fetchCurrentWeather() {
 
         // Get current weather

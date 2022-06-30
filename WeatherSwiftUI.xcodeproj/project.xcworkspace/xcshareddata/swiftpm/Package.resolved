@@ -10,21 +10,12 @@
       }
     },
     {
-      "identity" : "mlbasickit",
+      "identity" : "mlbaseswiftui",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/alaattinbedir/MLBasicKit.git",
+      "location" : "https://github.com/alaattinbedir/MLBaseSwiftUI.git",
       "state" : {
-        "revision" : "f0643ab891b841e9c34f69cb183a2807adda96c1",
+        "revision" : "b0daf0ff609f86e8ea56ce8c801b2e87eb47e8f2",
         "version" : "1.0.2"
-      }
-    },
-    {
-      "identity" : "mlextensions",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/alaattinbedir/MLExtensions",
-      "state" : {
-        "revision" : "e27efe3bf11e6d7098d0b157ba1cac5183a8c1a4",
-        "version" : "1.0.1"
       }
     },
     {

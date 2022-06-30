@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WeatherView: View {
-    @StateObject private var vm = WeatherVM()
+    @StateObject private var vm = WeatherViewModel()
     private var gridItemLayout = [GridItem(.flexible())]
 
     var body: some View {
