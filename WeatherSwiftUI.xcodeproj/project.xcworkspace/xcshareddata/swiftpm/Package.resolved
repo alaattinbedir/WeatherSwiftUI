@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "mlbaseswiftui",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/alaattinbedir/MLBaseSwiftUI.git",
-      "state" : {
-        "revision" : "b0daf0ff609f86e8ea56ce8c801b2e87eb47e8f2",
-        "version" : "1.0.2"
-      }
-    },
-    {
       "identity" : "mlnetworking",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/alaattinbedir/MLNetworking.git",

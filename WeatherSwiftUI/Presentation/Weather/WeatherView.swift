@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
+import MLBaseSwiftUI
+import MLNetworking
 
 struct WeatherView: View {
-    @StateObject private var vm = WeatherViewModel()
-    private var gridItemLayout = [GridItem(.flexible())]
-
+    @StateObject public var vm = WeatherViewModel()
     var body: some View {
         ZStack {
             Image("AfterNoon")
@@ -18,54 +18,30 @@ struct WeatherView: View {
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
 
-            VStack(alignment: .center, spacing: 0) {
-                Text(vm.cityName)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .font(Font.custom("Arial Rounded MT Bold", size: 26))
+            switch vm.loadingState {
+            case .idle:
+                Color.clear.onAppear()
+            case .loading:
+                ProgressView()
+            case .failed(_):
+                AlertView(errorInfo: ErrorInfo(id: 1, title: "hopa", message: "lilalay"))
+            case .loaded(_):
+                WeatherBodyView(vm: vm)
+            }
 
-                Text(vm.weatherType)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .font(Font.custom("Arial Rounded MT Bold", size: 17))
-                    .padding()
 
-                Image("partlysunny")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100, alignment: .center)
-
-                Text(vm.currentCityTemp)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .font(Font.custom("Arial Rounded MT Bold", size: 65))
-
-                Text(vm.currentDate)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .font(Font.custom("Arial Rounded MT Bold", size: 20))
-
-                ScrollView(.horizontal) {
-                    LazyHGrid(rows: gridItemLayout, spacing: 20) {
-                        ForEach (vm.responseHourlyList, id: \.time ) { hourly in
-                            WeatherHourlyCell(hourly: hourly)
-                        }
-                    }
-                }.padding(.leading, 30).padding(.trailing, 30).padding(.top, 30)
-
-                List {
-                    ForEach (vm.responseDailyList, id: \.time ) { daily in
-                        WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
-                    }
-                }.background(Color.clear.ignoresSafeArea())
-                    .onAppear {                        
-                        vm.onAppear()
-                    }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            // VSTACK
+            //            if vm.loadingState == .loading {
+            //                LoadingView(isShowing: .constant(true)) {
+            //                    WeatherBodyView(vm: vm)
+            //                }
+            //            } else if vm.loadingState == .succes {
+            //                WeatherBodyView(vm: vm)
+            //            } else if vm.loadingState == .failed {
+            //                AlertView(errorInfo: ErrorInfo(id: 1, title: "hopa", message: "lilalay"))
+            //            }
         }.task {
             vm.fetchCurrentWeather()
-        }
+        }.errorAlert(error: $vm.error)
         // ZStack
     }
 }
@@ -73,5 +49,57 @@ struct WeatherView: View {
 struct WeatherView_Previews: PreviewProvider {
     static var previews: some View {
         WeatherView()
+    }
+}
+
+struct WeatherBodyView: View {
+    let vm: WeatherViewModel
+    var gridItemLayout = [GridItem(.flexible())]
+
+    var body: some View {
+        VStack(alignment: .center, spacing: 0) {
+            Text(vm.cityName)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .font(Font.custom("Arial Rounded MT Bold", size: 26))
+
+            Text(vm.weatherType)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .font(Font.custom("Arial Rounded MT Bold", size: 17))
+                .padding()
+
+            Image("partlysunny")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100, alignment: .center)
+
+            Text(vm.currentCityTemp)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .font(Font.custom("Arial Rounded MT Bold", size: 65))
+
+            Text(vm.currentDate)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .font(Font.custom("Arial Rounded MT Bold", size: 20))
+
+            ScrollView(.horizontal) {
+                LazyHGrid(rows: gridItemLayout, spacing: 20) {
+                    ForEach (vm.responseHourlyList, id: \.time ) { hourly in
+                        WeatherHourlyCell(hourly: hourly)
+                    }
+                }
+            }.padding(.leading, 30).padding(.trailing, 30).padding(.top, 30)
+
+            List {
+                ForEach (vm.responseDailyList, id: \.time ) { daily in
+                    WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
+                }
+            }.background(Color.clear.ignoresSafeArea())
+                .onAppear {
+                    vm.onAppear()
+                }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
 }
