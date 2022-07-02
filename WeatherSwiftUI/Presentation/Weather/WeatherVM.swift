@@ -13,8 +13,6 @@ import MLNetworking
 
 @MainActor
 class WeatherVM: BaseVM {
-    @Published var title: String = ""
-    
     @Published var cityName: String = "Barcelona"
     @Published var weatherType: String = ""
     @Published var currentCityTemp: String = ""
