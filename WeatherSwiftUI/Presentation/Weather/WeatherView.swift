@@ -29,7 +29,6 @@ struct WeatherView: View {
             case .loaded(_):
                 WeatherBodyView(vm: vm)
             }
-
         }.task {
             vm.fetchCurrentWeather()
         }.errorAlert(error: $vm.error) // ZStack
