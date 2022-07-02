@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeatherAPIEntity: Codable {
+struct WeatherModel: Codable {
     let weatherType: String
     let currentCityTemp: Double
     let currentDate: Int

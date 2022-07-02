@@ -1,21 +1,26 @@
 //
-//  WeatherApi.swift
-//  WeatherToday
+//  WeatherApiService.swift
+//  WeatherSwiftUI
 //
-//  Created by Alaattin Bedir on 26.11.2021.
+//  Created by Alaattin Bedir on 2.07.2022.
 //
 
 import Foundation
 import MLNetworking
 
-// MARK: - Weather model extension
+protocol WeatherApiServiceProtocol {
+    func fetchWeather(latitude: Double,
+                      longitude: Double,
+                      succeed: @escaping (WeatherModel) -> Void,
+                      failed: @escaping (ErrorMessage) -> Void)
+}
 
-class WeatherAPI: WeatherDataSource {
+final class WeatherApiService: WeatherApiServiceProtocol {
 
     // Get weather data from service
     func fetchWeather(latitude: Double,
                       longitude: Double,
-                      succeed: @escaping (WeatherAPIEntity) -> Void,
+                      succeed: @escaping (WeatherModel) -> Void,
                       failed: @escaping (ErrorMessage) -> Void) {
 
         BaseAPI.shared.request(methotType: .get,

@@ -8,7 +8,7 @@
 import Foundation
 import MLNetworking
 
-protocol WeatherDataSource {
+protocol WeatherRepositoryProtocol {
     func fetchWeather(latitude: Double,
                       longitude: Double,
                       succeed: @escaping (WeatherAPIEntity) -> Void,

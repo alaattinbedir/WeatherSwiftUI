@@ -24,14 +24,14 @@ class WeatherVM: BaseVM {
 
     var currentLocation: (latitude:Double, longitude:Double) = (41.3874, 2.1686)
 
-    private let weatherApi: WeatherDataSource
+    private let apiService: WeatherApiServiceProtocol
 
     required convenience init() {
-        self.init(weatherApi: WeatherAPI())
+        self.init(apiService: WeatherApiService())
     }
 
-    nonisolated init (weatherApi: WeatherDataSource = WeatherAPI()) {
-        self.weatherApi = weatherApi
+    nonisolated init (apiService: WeatherApiServiceProtocol = WeatherApiService()) {
+        self.apiService = apiService
         super.init()
     }
 
@@ -46,7 +46,7 @@ extension WeatherVM {
 
         self.loadingState = .loading
         // Get current weather
-        weatherApi.fetchWeather(latitude: currentLocation.latitude,
+        apiService.fetchWeather(latitude: currentLocation.latitude,
                                 longitude: currentLocation.longitude,
                                 succeed: { [weak self] (weather) in
             guard let self = self else { return }

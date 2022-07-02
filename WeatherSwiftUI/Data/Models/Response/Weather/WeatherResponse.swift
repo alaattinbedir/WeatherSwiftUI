@@ -18,7 +18,7 @@ struct WeatherResponse : Codable {
     let daily : Daily?
     let currently : Currently?
     let hourly : Hourly?
-    let weather : WeatherAPIEntity
+    let weather : WeatherModel
 
     enum CodingKeys: String, CodingKey {
         case daily = "daily"
@@ -57,7 +57,7 @@ struct WeatherResponse : Codable {
         let hourlyContainer = try values.nestedContainer(keyedBy: HourlyKeys.self, forKey: .hourly)
         let responseHourlyList = try hourlyContainer.decode([ResponseData].self, forKey: .data)
 
-        weather = WeatherAPIEntity (weatherType: weatherType,
+        weather = WeatherModel (weatherType: weatherType,
                                     currentCityTemp: temperature,
                                     currentDate: currentDate,
                                     responseDailyList: responseDailyList,
