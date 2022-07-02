@@ -47,7 +47,7 @@ struct WeatherResponse : Codable {
         hourly = try values.decodeIfPresent(Hourly.self, forKey: .hourly)
 
         let currentlyContainer = try values.nestedContainer(keyedBy: CurrentlyKeys.self, forKey: .currently)
-        let temperature = try currentlyContainer.decode(Int.self, forKey: .temperature)
+        let temperature = try currentlyContainer.decode(Double.self, forKey: .temperature)
         let weatherType = try currentlyContainer.decode(String.self, forKey: .summary)
         let currentDate = try currentlyContainer.decode(Int.self, forKey: .time)
 

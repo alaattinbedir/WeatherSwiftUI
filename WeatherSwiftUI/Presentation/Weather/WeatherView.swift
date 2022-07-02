@@ -10,7 +10,7 @@ import MLBaseSwiftUI
 import MLNetworking
 
 struct WeatherView: View {
-    @StateObject public var vm = WeatherViewModel()
+    @StateObject public var vm = WeatherVM()
     var body: some View {
         ZStack {
             Image("AfterNoon")
@@ -53,7 +53,7 @@ struct WeatherView_Previews: PreviewProvider {
 }
 
 struct WeatherBodyView: View {
-    let vm: WeatherViewModel
+    let vm: WeatherVM
     var gridItemLayout = [GridItem(.flexible())]
 
     var body: some View {

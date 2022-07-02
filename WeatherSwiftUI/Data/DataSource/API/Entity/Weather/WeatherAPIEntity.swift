@@ -9,7 +9,7 @@ import Foundation
 
 struct WeatherAPIEntity: Codable {
     let weatherType: String
-    let currentCityTemp: Int
+    let currentCityTemp: Double
     let currentDate: Int
     let responseDailyList: [ResponseData]
     let responseHourlyList: [ResponseData]

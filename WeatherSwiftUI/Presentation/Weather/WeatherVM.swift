@@ -11,7 +11,7 @@ import UIKit
 import MLBaseSwiftUI
 
 @MainActor
-class WeatherViewModel: BaseViewModel {
+class WeatherVM: BaseVM {
     @Published var title: String = ""
     
     @Published var cityName: String = "Barcelona"
@@ -40,7 +40,7 @@ class WeatherViewModel: BaseViewModel {
     }
 }
 
-extension WeatherViewModel {
+extension WeatherVM {
     func fetchCurrentWeather() {
 
         self.loadingState = .loading
