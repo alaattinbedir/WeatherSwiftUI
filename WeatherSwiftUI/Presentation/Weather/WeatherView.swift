@@ -11,6 +11,7 @@ import MLNetworking
 
 struct WeatherView: View {
     @StateObject public var vm = WeatherVM()
+
     var body: some View {
         ZStack {
             Image("AfterNoon")
@@ -23,26 +24,15 @@ struct WeatherView: View {
                 Color.clear.onAppear()
             case .loading:
                 ProgressView()
-            case .failed(_):
-                AlertView(errorInfo: ErrorInfo(id: 1, title: "hopa", message: "lilalay"))
+            case .failed(let error):
+                AlertView(errorInfo: error)
             case .loaded(_):
                 WeatherBodyView(vm: vm)
             }
 
-
-            //            if vm.loadingState == .loading {
-            //                LoadingView(isShowing: .constant(true)) {
-            //                    WeatherBodyView(vm: vm)
-            //                }
-            //            } else if vm.loadingState == .succes {
-            //                WeatherBodyView(vm: vm)
-            //            } else if vm.loadingState == .failed {
-            //                AlertView(errorInfo: ErrorInfo(id: 1, title: "hopa", message: "lilalay"))
-            //            }
         }.task {
             vm.fetchCurrentWeather()
-        }.errorAlert(error: $vm.error)
-        // ZStack
+        }.errorAlert(error: $vm.error) // ZStack
     }
 }
 

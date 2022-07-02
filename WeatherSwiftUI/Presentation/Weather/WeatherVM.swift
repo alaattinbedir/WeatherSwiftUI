@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import UIKit
 import MLBaseSwiftUI
+import MLNetworking
 
 @MainActor
 class WeatherVM: BaseVM {
@@ -58,34 +59,7 @@ extension WeatherVM {
 
             self.loadingState = .loaded(weather)
         }, failed: { (error) in
-            self.loadingState = .failed(error)
-//            self.showLocalizedError(error: BaseViewModel.LocalError.networkError)
+            self.loadingState = .failed(ErrorInfo(id: error.errorCode ?? 0 , title: "Warning", message: error.message ?? ""))
         })
     }
 }
-
-//extension WeatherViewModel {
-//    enum Error: LocalizedError {
-//            case titleEmpty
-//
-//            var errorDescription: String? {
-//                switch self {
-//                case .titleEmpty:
-//                    return "Missing title"
-//                }
-//            }
-//
-//            var recoverySuggestion: String? {
-//                switch self {
-//                case .titleEmpty:
-//                    return "Article publishing failed due to missing title"
-//                }
-//            }
-//        }
-//
-//        func publish() {
-//            error = Error.titleEmpty
-//        }
-//}
-
-
