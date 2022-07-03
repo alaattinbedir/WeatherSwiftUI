@@ -26,9 +26,8 @@
 		84549293286DF43700D23FA0 /* MLBaseSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 84549292286DF43700D23FA0 /* MLBaseSwiftUI */; };
 		845492A02870851300D23FA0 /* MLNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 8454929F2870851300D23FA0 /* MLNetworking */; };
 		845492A32870BACE00D23FA0 /* WeatherApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845492A22870BACE00D23FA0 /* WeatherApiService.swift */; };
-		845492AA287181C600D23FA0 /* MLBaseSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 845492A9287181C600D23FA0 /* MLBaseSwiftUI */; };
-		845492AD287181E200D23FA0 /* MLBaseSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 845492AC287181E200D23FA0 /* MLBaseSwiftUI */; };
-		845492B02871821000D23FA0 /* MLNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 845492AF2871821000D23FA0 /* MLNetworking */; };
+		845492B32871830400D23FA0 /* MLNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 845492B22871830400D23FA0 /* MLNetworking */; };
+		845492B62871832D00D23FA0 /* MLBaseSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 845492B52871832D00D23FA0 /* MLBaseSwiftUI */; };
 		84AC16B5286DC94300F88023 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AC16B4286DC94300F88023 /* WeatherModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,10 +77,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				845492B02871821000D23FA0 /* MLNetworking in Frameworks */,
-				845492AD287181E200D23FA0 /* MLBaseSwiftUI in Frameworks */,
+				845492B62871832D00D23FA0 /* MLBaseSwiftUI in Frameworks */,
+				845492B32871830400D23FA0 /* MLNetworking in Frameworks */,
 				84549293286DF43700D23FA0 /* MLBaseSwiftUI in Frameworks */,
-				845492AA287181C600D23FA0 /* MLBaseSwiftUI in Frameworks */,
 				845492A02870851300D23FA0 /* MLNetworking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,9 +307,8 @@
 			packageProductDependencies = (
 				84549292286DF43700D23FA0 /* MLBaseSwiftUI */,
 				8454929F2870851300D23FA0 /* MLNetworking */,
-				845492A9287181C600D23FA0 /* MLBaseSwiftUI */,
-				845492AC287181E200D23FA0 /* MLBaseSwiftUI */,
-				845492AF2871821000D23FA0 /* MLNetworking */,
+				845492B22871830400D23FA0 /* MLNetworking */,
+				845492B52871832D00D23FA0 /* MLBaseSwiftUI */,
 			);
 			productName = WeatherSwiftUI;
 			productReference = 8417D8DC286ADB7E00878083 /* WeatherSwiftUI.app */;
@@ -386,9 +383,8 @@
 			);
 			mainGroup = 8417D8D3286ADB7E00878083;
 			packageReferences = (
-				845492A8287181C600D23FA0 /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */,
-				845492AB287181E200D23FA0 /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */,
-				845492AE2871821000D23FA0 /* XCRemoteSwiftPackageReference "MLNetworking" */,
+				845492B12871830400D23FA0 /* XCRemoteSwiftPackageReference "MLNetworking" */,
+				845492B42871832D00D23FA0 /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */,
 			);
 			productRefGroup = 8417D8DD286ADB7E00878083 /* Products */;
 			projectDirPath = "";
@@ -771,25 +767,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		845492A8287181C600D23FA0 /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/alaattinbedir/MLBaseSwiftUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		845492AB287181E200D23FA0 /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/alaattinbedir/MLBaseSwiftUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		845492AE2871821000D23FA0 /* XCRemoteSwiftPackageReference "MLNetworking" */ = {
+		845492B12871830400D23FA0 /* XCRemoteSwiftPackageReference "MLNetworking" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/alaattinbedir/MLNetworking.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		845492B42871832D00D23FA0 /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alaattinbedir/MLBaseSwiftUI.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
@@ -806,20 +794,15 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = MLNetworking;
 		};
-		845492A9287181C600D23FA0 /* MLBaseSwiftUI */ = {
+		845492B22871830400D23FA0 /* MLNetworking */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 845492A8287181C600D23FA0 /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */;
-			productName = MLBaseSwiftUI;
-		};
-		845492AC287181E200D23FA0 /* MLBaseSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 845492A8287181C600D23FA0 /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */;
-			productName = MLBaseSwiftUI;
-		};
-		845492AF2871821000D23FA0 /* MLNetworking */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 845492AE2871821000D23FA0 /* XCRemoteSwiftPackageReference "MLNetworking" */;
+			package = 845492B12871830400D23FA0 /* XCRemoteSwiftPackageReference "MLNetworking" */;
 			productName = MLNetworking;
+		};
+		845492B52871832D00D23FA0 /* MLBaseSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 845492B42871832D00D23FA0 /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */;
+			productName = MLBaseSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
