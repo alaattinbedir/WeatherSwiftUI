@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct WeatherDailyCell: View {
     let daily: ResponseData
 
