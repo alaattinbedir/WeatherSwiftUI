@@ -229,12 +229,12 @@
 			path = HourlyCell;
 			sourceTree = "<group>";
 		};
-		845492A12870BAA800D23FA0 /* Services */ = {
+		845492A12870BAA800D23FA0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				845492A62870BD1600D23FA0 /* Weather */,
 			);
-			path = Services;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		845492A42870BB7200D23FA0 /* Model */ = {
@@ -272,7 +272,7 @@
 		84AC1647286CCB7300F88023 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				845492A12870BAA800D23FA0 /* Services */,
+				845492A12870BAA800D23FA0 /* Service */,
 				845492A42870BB7200D23FA0 /* Model */,
 			);
 			path = Data;
