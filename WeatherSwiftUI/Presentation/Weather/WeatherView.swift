@@ -8,9 +8,12 @@
 import SwiftUI
 import MLBaseSwiftUI
 import MLNetworking
+import PopupView
 
 struct WeatherView: View {
+    @EnvironmentObject var appDelegate: WeatherAppDelegate
     @StateObject public var vm = WeatherVM()
+    @State var showingPopup = true
 
     var body: some View {
         ZStack {
@@ -25,7 +28,9 @@ struct WeatherView: View {
             case .loading:
                 ProgressView()
             case .failed(let error):
-                AlertView(errorInfo: error)
+                self.bgView().popup(isPresented: $showingPopup) {
+                    ErrorView(error: error) {}
+                }
             case .loaded(_):
                 WeatherBodyView(vm: vm)
             }

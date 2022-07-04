@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct WeatherSwiftUIApp: App {
+    @UIApplicationDelegateAdaptor var delegate: WeatherAppDelegate
+    
     var body: some Scene {
         WindowGroup {
             WeatherView()
