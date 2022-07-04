@@ -11,9 +11,9 @@ import MLNetworking
 import PopupView
 
 struct WeatherView: View {
-    @EnvironmentObject var appDelegate: WeatherAppDelegate
+    @EnvironmentObject var appDelegate: AppDelegate
     @StateObject public var vm = WeatherVM()
-    @State var showingPopup = true
+    @State var showingPopup = false
 
     var body: some View {
         ZStack {
@@ -28,9 +28,9 @@ struct WeatherView: View {
             case .loading:
                 ProgressView()
             case .failed(let error):
-                self.bgView().popup(isPresented: $showingPopup) {
+                topMostView().popup(isPresented: $showingPopup) {
                     ErrorView(error: error) {}
-                }
+                }.onAppear() { showingPopup = true }
             case .loaded(_):
                 WeatherBodyView(vm: vm)
             }

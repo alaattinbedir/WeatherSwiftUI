@@ -26,8 +26,8 @@
 		845492A02870851300D23FA0 /* MLNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 8454929F2870851300D23FA0 /* MLNetworking */; };
 		845492A32870BACE00D23FA0 /* WeatherApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845492A22870BACE00D23FA0 /* WeatherApiService.swift */; };
 		845492B32871830400D23FA0 /* MLNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 845492B22871830400D23FA0 /* MLNetworking */; };
-		848168152872EC4700A0711E /* WeatherAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848168142872EC4700A0711E /* WeatherAppDelegate.swift */; };
-		8481681E2872F06500A0711E /* MLBaseSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8481681D2872F06500A0711E /* MLBaseSwiftUI */; };
+		848168152872EC4700A0711E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848168142872EC4700A0711E /* AppDelegate.swift */; };
+		848168242872F36200A0711E /* MLBaseSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 848168232872F36200A0711E /* MLBaseSwiftUI */; };
 		84AC16B5286DC94300F88023 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AC16B4286DC94300F88023 /* WeatherModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +69,8 @@
 		842A45E9286B494C0029F819 /* DailyCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCellView.swift; sourceTree = "<group>"; };
 		842A45EC286B49DC0029F819 /* HourlyCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCellView.swift; sourceTree = "<group>"; };
 		845492A22870BACE00D23FA0 /* WeatherApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApiService.swift; sourceTree = "<group>"; };
-		848168142872EC4700A0711E /* WeatherAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppDelegate.swift; sourceTree = "<group>"; };
+		848168142872EC4700A0711E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		848168222872F27600A0711E /* MLBaseSwiftUI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MLBaseSwiftUI; path = ../MLBaseSwiftUI; sourceTree = "<group>"; };
 		84AC16B4286DC94300F88023 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,7 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				845492B32871830400D23FA0 /* MLNetworking in Frameworks */,
-				8481681E2872F06500A0711E /* MLBaseSwiftUI in Frameworks */,
+				848168242872F36200A0711E /* MLBaseSwiftUI in Frameworks */,
 				845492A02870851300D23FA0 /* MLNetworking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +105,7 @@
 		8417D8D3286ADB7E00878083 = {
 			isa = PBXGroup;
 			children = (
+				848168212872F27600A0711E /* Packages */,
 				8417D8DE286ADB7E00878083 /* WeatherSwiftUI */,
 				8417D8EF286ADB7F00878083 /* WeatherSwiftUITests */,
 				8417D8F9286ADB7F00878083 /* WeatherSwiftUIUITests */,
@@ -265,9 +267,17 @@
 			isa = PBXGroup;
 			children = (
 				8417D8DF286ADB7E00878083 /* WeatherSwiftUIApp.swift */,
-				848168142872EC4700A0711E /* WeatherAppDelegate.swift */,
+				848168142872EC4700A0711E /* AppDelegate.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		848168212872F27600A0711E /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				848168222872F27600A0711E /* MLBaseSwiftUI */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 		84AC1646286CCB2300F88023 /* Presentation */ = {
@@ -316,7 +326,7 @@
 			packageProductDependencies = (
 				8454929F2870851300D23FA0 /* MLNetworking */,
 				845492B22871830400D23FA0 /* MLNetworking */,
-				8481681D2872F06500A0711E /* MLBaseSwiftUI */,
+				848168232872F36200A0711E /* MLBaseSwiftUI */,
 			);
 			productName = WeatherSwiftUI;
 			productReference = 8417D8DC286ADB7E00878083 /* WeatherSwiftUI.app */;
@@ -392,7 +402,6 @@
 			mainGroup = 8417D8D3286ADB7E00878083;
 			packageReferences = (
 				845492B12871830400D23FA0 /* XCRemoteSwiftPackageReference "MLNetworking" */,
-				8481681C2872F06500A0711E /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */,
 			);
 			productRefGroup = 8417D8DD286ADB7E00878083 /* Products */;
 			projectDirPath = "";
@@ -445,7 +454,7 @@
 				8417D8E0286ADB7E00878083 /* WeatherSwiftUIApp.swift in Sources */,
 				8417D94C286ADEBE00878083 /* SessionKeeper.swift in Sources */,
 				8417D927286ADD3300878083 /* WeatherResponse.swift in Sources */,
-				848168152872EC4700A0711E /* WeatherAppDelegate.swift in Sources */,
+				848168152872EC4700A0711E /* AppDelegate.swift in Sources */,
 				8417D94F286AE3FF00878083 /* WeatherView.swift in Sources */,
 				845492A32870BACE00D23FA0 /* WeatherApiService.swift in Sources */,
 				842A45ED286B49DC0029F819 /* HourlyCellView.swift in Sources */,
@@ -784,14 +793,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		8481681C2872F06500A0711E /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/alaattinbedir/MLBaseSwiftUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -804,9 +805,8 @@
 			package = 845492B12871830400D23FA0 /* XCRemoteSwiftPackageReference "MLNetworking" */;
 			productName = MLNetworking;
 		};
-		8481681D2872F06500A0711E /* MLBaseSwiftUI */ = {
+		848168232872F36200A0711E /* MLBaseSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8481681C2872F06500A0711E /* XCRemoteSwiftPackageReference "MLBaseSwiftUI" */;
 			productName = MLBaseSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
