@@ -47,7 +47,7 @@ struct WeatherView_Previews: PreviewProvider {
 }
 
 struct WeatherBodyView: View {
-    let vm: WeatherVM
+    @ObservedObject var vm: WeatherVM
     var gridItemLayout = [GridItem(.flexible())]
 
     var body: some View {
