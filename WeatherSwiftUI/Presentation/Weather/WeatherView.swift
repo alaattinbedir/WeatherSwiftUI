@@ -86,14 +86,25 @@ struct WeatherBodyView: View {
                 }
             }.padding(.leading, 30).padding(.trailing, 30).padding(.top, 30)
 
-            List {
-                ForEach (vm.responseDailyList, id: \.time ) { daily in
-                    WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
-                }
-            }.background(Color.clear.ignoresSafeArea())
-                .onAppear {
-                    vm.onAppear()
-                }
+            if #available(iOS 16.0, *) {
+                List {
+                    ForEach (vm.responseDailyList, id: \.time ) { daily in
+                        WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
+                    }
+                }.background(Color.clear.ignoresSafeArea()).scrollContentBackground(.hidden)
+                    .onAppear {
+                        vm.onAppear()
+                    }
+            } else {
+                List {
+                    ForEach (vm.responseDailyList, id: \.time ) { daily in
+                        WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
+                    }
+                }.background(Color.clear.ignoresSafeArea())
+                    .onAppear {
+                        vm.onAppear()
+                    }
+            }
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
 }
