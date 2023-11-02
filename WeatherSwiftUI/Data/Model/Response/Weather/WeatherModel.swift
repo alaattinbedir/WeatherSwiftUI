@@ -11,6 +11,6 @@ struct WeatherModel: Codable {
     let weatherType: String
     let currentCityTemp: Double
     let currentDate: Int
-    let responseDailyList: [ResponseData]
-    let responseHourlyList: [ResponseData]
+    let responseDailyList: [Daily]
+    let responseHourlyList: [Current]
 }

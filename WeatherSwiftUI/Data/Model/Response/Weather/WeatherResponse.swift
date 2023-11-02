@@ -1,137 +1,124 @@
-/*
-Copyright (c) 2019 Swift Models Generated from JSON powered by http://www.json4swift.com
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar
-
-*/
+//
+//  WeatherResponse.swift
+//  WeatherSwiftUI
+//
+//  Created by alaattib on 1.11.2023.
+//
 
 import Foundation
 
-
-struct WeatherResponse : Codable {
-    let daily : Daily?
-    let currently : Currently?
-    let hourly : Hourly?
+// MARK: - WeatherResponse
+struct WeatherResponse: Codable {
+    let current: Current?
+    let hourly: [Current]?
+    let daily: [Daily]?
     let weather : WeatherModel
 
     enum CodingKeys: String, CodingKey {
-        case daily = "daily"
-        case currently = "currently"
-        case hourly = "hourly"
-    }
-
-    enum CurrentlyKeys: String, CodingKey {
-        case summary = "summary"
-        case temperature = "temperature"
-        case time = "time"
-    }
-
-    enum DailyKeys: String, CodingKey {
-        case data = "data"
-    }
-
-    enum HourlyKeys: String, CodingKey {
-        case data = "data"
+        case current, hourly, daily
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        daily = try values.decodeIfPresent(Daily.self, forKey: .daily)
-        currently = try values.decodeIfPresent(Currently.self, forKey: .currently)
-        hourly = try values.decodeIfPresent(Hourly.self, forKey: .hourly)
+        daily = try values.decodeIfPresent([Daily].self, forKey: .daily)
+        current = try values.decodeIfPresent(Current.self, forKey: .current)
+        hourly = try values.decodeIfPresent([Current].self, forKey: .hourly)
 
-        let currentlyContainer = try values.nestedContainer(keyedBy: CurrentlyKeys.self, forKey: .currently)
-        let temperature = try currentlyContainer.decode(Double.self, forKey: .temperature)
-        let weatherType = try currentlyContainer.decode(String.self, forKey: .summary)
-        let currentDate = try currentlyContainer.decode(Int.self, forKey: .time)
-
-        let dailyContainer = try values.nestedContainer(keyedBy: DailyKeys.self, forKey: .daily)
-        let responseDailyList = try dailyContainer.decode([ResponseData].self, forKey: .data)
-
-        let hourlyContainer = try values.nestedContainer(keyedBy: HourlyKeys.self, forKey: .hourly)
-        let responseHourlyList = try hourlyContainer.decode([ResponseData].self, forKey: .data)
-
-        weather = WeatherModel (weatherType: weatherType,
-                                    currentCityTemp: temperature,
-                                    currentDate: currentDate,
-                                    responseDailyList: responseDailyList,
-                                    responseHourlyList: responseHourlyList)
+        weather = WeatherModel (weatherType: current?.weather[0].description.rawValue.uppercased() ?? "",
+                                currentCityTemp: current?.temp ?? 0,
+                                currentDate: current?.dt ?? 0,
+                                responseDailyList: daily ?? [],
+                                responseHourlyList: hourly ?? [])
     }
 }
 
-struct Currently : Codable {
-    let temperature : Double?
-    let time : Int?
-    let summary : String?
+// MARK: - Current
+struct Current: Codable {
+    let dt: Int
+    let sunrise, sunset: Int?
+    let temp, feelsLike: Double
+    let pressure, humidity: Int
+    let dewPoint, uvi: Double
+    let clouds, visibility: Int
+    let windSpeed: Double
+    let windDeg: Int
+    let weather: [Weather]
+    let windGust, pop: Double?
 
     enum CodingKeys: String, CodingKey {
-        case temperature = "temperature"
-        case time = "time"
-        case summary = "summary"
-    }
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        temperature = try values.decodeIfPresent(Double.self, forKey: .temperature)
-        time = try values.decodeIfPresent(Int.self, forKey: .time)
-        summary = try values.decodeIfPresent(String.self, forKey: .summary)
+        case dt, sunrise, sunset, temp
+        case feelsLike = "feels_like"
+        case pressure, humidity
+        case dewPoint = "dew_point"
+        case uvi, clouds, visibility
+        case windSpeed = "wind_speed"
+        case windDeg = "wind_deg"
+        case weather
+        case windGust = "wind_gust"
+        case pop
     }
 }
 
-struct Daily : Codable {
-    let data : [ResponseData]?
+// MARK: - Weather
+struct Weather: Codable {
+    let id: Int
+    let main: Main
+    let description: Description
+    let icon: String
+}
+
+enum Description: String, Codable {
+    case brokenClouds = "broken clouds"
+    case clearSky = "clear sky"
+    case fewClouds = "few clouds"
+    case lightRain = "light rain"
+    case overcastClouds = "overcast clouds"
+    case scatteredClouds = "scattered clouds"
+}
+
+enum Main: String, Codable {
+    case clear = "Clear"
+    case clouds = "Clouds"
+    case rain = "Rain"
+}
+
+// MARK: - Daily
+struct Daily: Codable {
+    let dt, sunrise, sunset, moonrise: Int
+    let moonset: Int
+    let moonPhase: Double
+    let temp: Temp
+    let feelsLike: FeelsLike
+    let pressure, humidity: Int
+    let dewPoint, windSpeed: Double
+    let windDeg: Int
+    let windGust: Double
+    let weather: [Weather]
+    let clouds: Int
+    let pop, uvi: Double
+    let rain: Double?
 
     enum CodingKeys: String, CodingKey {
-        case data = "data"
-    }
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        data = try values.decodeIfPresent([ResponseData].self, forKey: .data)
-    }
-}
-
-struct Hourly : Codable {
-    let data : [ResponseData]?
-
-    enum CodingKeys: String, CodingKey {
-        case data = "data"
-    }
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        data = try values.decodeIfPresent([ResponseData].self, forKey: .data)
+        case dt, sunrise, sunset, moonrise, moonset
+        case moonPhase = "moon_phase"
+        case temp
+        case feelsLike = "feels_like"
+        case pressure, humidity
+        case dewPoint = "dew_point"
+        case windSpeed = "wind_speed"
+        case windDeg = "wind_deg"
+        case windGust = "wind_gust"
+        case weather, clouds, pop, uvi, rain
     }
 }
 
-struct ResponseData : Codable {
-    let temperature : Double?
-    let temperatureHigh : Double?
-    let time : Int?
-    let apparentTemperature : Double?
-    let apparentTemperatureHigh : Double?
-
-    enum CodingKeys: String, CodingKey {
-        case temperature = "temperature"
-        case temperatureHigh = "temperatureHigh"
-        case time = "time"
-        case apparentTemperature = "apparentTemperature"
-        case apparentTemperatureHigh = "apparentTemperatureHigh"
-    }
-
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        temperature = try values.decodeIfPresent(Double.self, forKey: .temperature)
-        temperatureHigh = try values.decodeIfPresent(Double.self, forKey: .temperatureHigh)
-        time = try values.decodeIfPresent(Int.self, forKey: .time)
-        apparentTemperature = try values.decodeIfPresent(Double.self, forKey: .apparentTemperature)
-        apparentTemperatureHigh = try values.decodeIfPresent(Double.self, forKey: .apparentTemperatureHigh)
-    }
+// MARK: - FeelsLike
+struct FeelsLike: Codable {
+    let day, night, eve, morn: Double
 }
 
+// MARK: - Temp
+struct Temp: Codable {
+    let day, min, max, night: Double
+    let eve, morn: Double
+}

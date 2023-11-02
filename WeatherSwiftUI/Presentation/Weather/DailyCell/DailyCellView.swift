@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 
 struct WeatherDailyCell: View {
-    let daily: ResponseData
+    let daily: Daily
 
     var body: some View {
         HStack {
-            Text(Helper.sharedInstance.getDayFromDate(date: Double(daily.time ?? 0)))
+            Text(Helper.sharedInstance.getDayFromDate(date: Double(daily.dt)))
                 .foregroundColor(.white)
                 .frame(width: 80, height: 25, alignment: .leading)
             Spacer()
@@ -22,10 +22,10 @@ struct WeatherDailyCell: View {
                 .scaledToFit()
                 .frame(width: 40, height: 25, alignment: .center)
             Spacer()
-            Text(Helper.sharedInstance.convertFahrenheitToCelsius(fahrenheit:daily.apparentTemperatureHigh ?? 32))
+            Text(Helper.sharedInstance.convertFahrenheitToCelsius(fahrenheit:daily.temp.min))
                 .foregroundColor(.white)
                 .padding(7)
-            Text(Helper.sharedInstance.convertFahrenheitToCelsius(fahrenheit:daily.temperatureHigh ?? 32))
+            Text(Helper.sharedInstance.convertFahrenheitToCelsius(fahrenheit:daily.temp.max))
                 .foregroundColor(.gray)
                 .padding(7)
 

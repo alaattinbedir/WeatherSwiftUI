@@ -17,8 +17,8 @@ class WeatherVM: BaseVM {
     @Published var weatherType: String = ""
     @Published var currentCityTemp: String = ""
     @Published var currentDate: String = ""
-    @Published var responseDailyList: [ResponseData] = []
-    @Published var responseHourlyList: [ResponseData] = []
+    @Published var responseDailyList: [Daily] = []
+    @Published var responseHourlyList: [Current] = []
 
     var currentLocation: (latitude:Double, longitude:Double) = (41.3874, 2.1686)
 

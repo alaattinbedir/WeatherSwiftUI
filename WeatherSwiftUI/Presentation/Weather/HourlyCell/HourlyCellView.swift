@@ -9,17 +9,17 @@ import Foundation
 import SwiftUI
 
 struct WeatherHourlyCell: View {
-    let hourly: ResponseData
+    let hourly: Current
 
     var body: some View {
         VStack {
-            Text(Helper.sharedInstance.getHourFromDate(date: Double(hourly.time ?? 0)))
+            Text(Helper.sharedInstance.getHourFromDate(date: Double(hourly.dt)))
                 .foregroundColor(.white)
             Image("partlysunny")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 40, height: 30, alignment: .center)
-            Text(Helper.sharedInstance.convertFahrenheitToCelsius(fahrenheit: hourly.temperature ?? 0))
+                .frame(width: 35, height: 26, alignment: .center)
+            Text(Helper.sharedInstance.convertFahrenheitToCelsius(fahrenheit: hourly.temp))
                 .foregroundColor(.white)
         }
     }

@@ -80,7 +80,7 @@ struct WeatherBodyView: View {
 
             ScrollView(.horizontal) {
                 LazyHGrid(rows: gridItemLayout, spacing: 20) {
-                    ForEach (vm.responseHourlyList, id: \.time ) { hourly in
+                    ForEach (vm.responseHourlyList, id: \.dt ) { hourly in
                         WeatherHourlyCell(hourly: hourly)
                     }
                 }
@@ -88,7 +88,7 @@ struct WeatherBodyView: View {
 
             if #available(iOS 16.0, *) {
                 List {
-                    ForEach (vm.responseDailyList, id: \.time ) { daily in
+                    ForEach (vm.responseDailyList, id: \.dt ) { daily in
                         WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
                     }
                 }.background(Color.clear.ignoresSafeArea()).scrollContentBackground(.hidden)
@@ -97,7 +97,7 @@ struct WeatherBodyView: View {
                     }
             } else {
                 List {
-                    ForEach (vm.responseDailyList, id: \.time ) { daily in
+                    ForEach (vm.responseDailyList, id: \.dt ) { daily in
                         WeatherDailyCell(daily: daily).listRowSeparator(.hidden)
                     }
                 }.background(Color.clear.ignoresSafeArea())

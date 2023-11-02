@@ -8,5 +8,5 @@
 import Foundation
 
 enum Endpoints {
-    static let weather = "{0},{1}"    
+    static let weather = "onecall?lat={0}&lon={1}&exclude=minutely,alert&appid={2}&units=metric"
 }
