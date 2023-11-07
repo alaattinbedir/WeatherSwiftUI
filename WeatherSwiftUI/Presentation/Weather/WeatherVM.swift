@@ -57,7 +57,7 @@ extension WeatherVM {
 
             self.loadingState = .loaded(weather)
         }, failed: { (error) in
-            self.loadingState = .failed(ErrorInfo(id: error.errorCode ?? 0 , title: "Warning", message: error.message ?? ""))
+            self.loadingState = .failed(ErrorInfo(id: error.code* , title: "Warning", message: error.message*))
         })
     }
 }

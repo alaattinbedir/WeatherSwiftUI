@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire.git",
       "state" : {
-        "revision" : "78424be314842833c04bc3bef5b72e85fff99204",
-        "version" : "5.6.4"
+        "revision" : "3dc6a42c7727c49bf26508e29b0a0b35f9c7e1ad",
+        "version" : "5.8.1"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/alaattinbedir/MLNetworking.git",
       "state" : {
-        "revision" : "8e49225b7484cb6536252b240ddf1535bac242a6",
-        "version" : "1.1.2"
+        "revision" : "79c7b883fc174976b3c4be49096165b90d54d0bf",
+        "version" : "1.1.5"
       }
     },
     {
